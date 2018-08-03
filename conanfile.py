@@ -1,4 +1,4 @@
-import os, shutil, platform, re
+import os, shutil, platform
 from conans import ConanFile, AutoToolsBuildEnvironment, tools
 
 class MpfrConan(ConanFile):
@@ -8,10 +8,10 @@ class MpfrConan(ConanFile):
     version     = '4.0.1'
     md5hash     = 'a2a6d97d890222a29d9b7683d075b97b'
     description = 'The GNU Multiple Precision Arithmetic Library'
-    url         = 'http://www.mpfr.org/mpfr-current'
+    url         = 'https://github.com/CGAL/conan-mpfr'
     license     = 'MIT'
     settings    = 'os', 'compiler', 'arch', 'build_type'
-    requires    = 'gmp/[>=5.0.0]@ntc/stable', 'helpers/0.3@ntc/stable'
+    requires    = 'gmp/[>=5.0.0]@cgal/testing'
 
     # See http://www.mpfr.org/mpfr-current/mpfr.pdf for other potential options
     options = {
