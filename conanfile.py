@@ -71,25 +71,23 @@ class MpfrConan(ConanFile):
                 autotools.configure(args=args)
 
             autotools.make()
+            if 'gcc' == self.settings.compiler and 'Windows' == self.settings.os:
+                if self.env['DLLTOOL'] is not None:
+                    self.run('{dlltool} --output-lib mpfr.lib --input-def src/.libs/libmpfr-6.dll.def --dllname libmpfr-6.dll'.format(dlltool=self.env['DLLTOOL']))
             autotools.make(args=['install'])
 
+    def package(self):
+        self.copy("COPYING*", src="mpfr", dst="")
+        self.copy("mpfr.lib",  src="mpfr", dst="lib")
+
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
-
-        # Populate the pkg-config environment variables
-        with tools.pythonpath(self): # Compensate for #2644
-            from platform_helpers import adjustPath, appendPkgConfigPath
-
-            self.env_info.PKG_CONFIG_MPFR_PREFIX = adjustPath(self.package_folder)
-            appendPkgConfigPath(adjustPath(os.path.join(self.package_folder, 'lib', 'pkgconfig')), self.env_info)
-
         self.cpp_info.libs = ['mpfr']
 
     def package_id(self):
         # On windows, we cross compile this with mingw.. But because it's
         # compatible with MSVC, set it's hash to reflect that.
         # Maybe use tools.cross_building(self.settings)
-        if 'gcc' == self.settings.compiler and 'Windows' == platform.system():
+        if 'gcc' == self.settings.compiler and 'Windows' == self.settings.os:
             self.info.settings.compiler = 'Visual Studio'
             self.info.settings.compiler.version = int(str(self.options.msvc))
 
