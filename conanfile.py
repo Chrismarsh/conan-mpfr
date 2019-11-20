@@ -5,8 +5,7 @@ class MpfrConan(ConanFile):
     """ Building MPFR for the intention of using it to build CGAL """
 
     name        = 'mpfr'
-    version     = '4.0.1'
-    md5hash     = 'a2a6d97d890222a29d9b7683d075b97b'
+    version     = '4.0.2'
     description = 'The GNU Multiple Precision Arithmetic Library'
     url         = 'https://github.com/CGAL/conan-mpfr'
     license     = 'MIT'
@@ -25,7 +24,6 @@ class MpfrConan(ConanFile):
 
         archive = 'mpfr-{version}.tar.gz'.format(version=self.version)
         tools.download('http://www.mpfr.org/mpfr-current/{archive}'.format(archive=archive), archive)
-        tools.check_md5(archive, self.md5hash)
         tools.unzip(archive)
         shutil.move('mpfr-{version}'.format(version=self.version), self.name)
         os.unlink(archive)
