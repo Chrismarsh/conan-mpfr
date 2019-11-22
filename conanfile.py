@@ -10,7 +10,7 @@ class MpfrConan(ConanFile):
     url         = 'https://github.com/CGAL/conan-mpfr'
     license     = 'MIT'
     settings    = 'os', 'compiler', 'arch', 'build_type'
-    requires    = 'gmp/[>=5.0.0]@cgal/testing'
+    requires    = 'gmp/[>=5.0.0]'
 
     # See http://www.mpfr.org/mpfr-current/mpfr.pdf for other potential options
     options = {
