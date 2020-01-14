@@ -26,6 +26,7 @@ class MpfrConan(ConanFile):
         tools.download('http://www.mpfr.org/mpfr-current/{archive}'.format(archive=archive), archive)
         tools.unzip(archive)
         shutil.move('mpfr-{version}'.format(version=self.version), self.name)
+        tools.replace_in_file(self.name+"/configure", r"-install_name \$rpath/", "-install_name @rpath/")
         os.unlink(archive)
 
     def configure(self):
