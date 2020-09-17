@@ -5,7 +5,7 @@ class MpfrConan(ConanFile):
     """ Building MPFR for the intention of using it to build CGAL """
 
     name        = 'mpfr'
-    version     = '4.0.2'
+    version     = '4.1.0'
     description = 'The GNU Multiple Precision Arithmetic Library'
     url         = 'https://github.com/CGAL/conan-mpfr'
     license     = 'MIT'
