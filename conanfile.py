@@ -95,4 +95,3 @@ class MpfrConan(ConanFile):
                 runtime += 'd'
             self.info.settings.compiler.runtime = runtime
 
-# vim: ts=4 sw=4 expandtab ffs=unix ft=python foldmethod=marker :
